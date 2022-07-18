@@ -123,6 +123,8 @@ class ProofDirective(SphinxDirective):
 
         section = nodes.admonition(classes=classes, ids=[typ])
 
+        if typ == 'proof':
+            typ = 'dimostrazione'
         self.content[0] = "{}. ".format(typ.title()) + self.content[0]
         self.state.nested_parse(self.content, 0, section)
 
