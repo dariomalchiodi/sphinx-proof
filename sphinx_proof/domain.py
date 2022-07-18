@@ -128,9 +128,13 @@ class ProofDomain(Domain):
                     number = ".".join(
                         map(str, env.toc_fignumbers[todocname][typ][target])
                     )
-                title = nodes.Text(f"{match['type'].title()} {number}")
-                translations = {'Definition': 'Definizione'}
-                title = translations[title]
+		translations = {'Definition': 'Definizione',
+                                'Example': 'Esempio',
+                                'Theorem': 'Teorema',
+                                'Corollary': 'Corollario'}
+		ita_name = translations[match['type'].title()]
+                #title = nodes.Text(f"{match['type'].title()} {number}")
+                title = nodes.Text(f"{ita_name} {number}")
             # builder, fromdocname, todocname, targetid, child, title=None
             return make_refnode(builder, fromdocname, todocname, target, title)
         else:
